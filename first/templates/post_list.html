@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block body %}
+  <div class="row">
+    <div class="col">
+      <h1>文章列表</h1>
+    </div>
+    <div class="col text-end">
+      <a class="btn btn-outline-success" href="{% url 'post_create' %}">發文</a>
+    </div>
+  </div>
+
+  {% comment %} <ul>
+    {% for post in posts %}
+      <li>
+        #{{ post.id }} | {{ post.title }} | <a href="{% url 'post_detail' post.id %}">detail</a>
+      </li>
+    {% empty %}
+      <li>沒有任何文章</li>
+    {% endfor %}
+  </ul> {% endcomment %}
+
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">標題</th>
+            <th scope="col">是否公開</th>
+            <th scope="col">操作</th>
+            <th scope="col">標籤</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for post in posts %}
+            <tr>
+              <th scope="row">{{ post.id }}</th>
+              <td>{{ post.title }}</td>
+              <td>{{ post.is_public }}</td>
+              <td>{{ post.tags.all|join:', ' }}</td>
+              <td>
+                <a class="btn btn-info btn-sm" href="{% url 'post_detail' post.id %}">詳情</a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <th scope="row" colspan="4" class="text-center">目前沒有任何文章，不如你發一篇吧！</th>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock body %}

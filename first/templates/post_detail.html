@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block body %}
+  {% comment %} id: {{ post.id }}
+  <br>
+  title: {{ post.title }}
+  <br>
+  content: {{ post.content | linebreaks }}
+  <br>
+  is_public: {{ post.is_public }}
+  <br>
+  <a href="{% url 'post_update' post.id %}">編輯</a>
+  <a href="{% url 'post_delete' post.id %}">刪除</a> {% endcomment %}
+
+  <div class="row">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">作者</h6>
+          <p class="card-text">
+            <nav style="--bs-breadcrumb-divider: ',';" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                {% for tag in post.tags.all %}
+                  <li class="breadcrumb-item">
+                    <a href="{% url 'post_list' %}?tag_id={{ tag.id }}">{{ tag.name }}</a>
+                  </li>
+                {% endfor %}
+              </ol>
+            </nav>
+
+            {% if post.is_public %}
+              {{ post.content | linebreaks }}
+            {% else %}
+              內容不公開
+            {% endif %}
+          </p>
+        </div>
+        <div class="card-footer text-end">
+          <a href="{% url 'post_update' post.id %}" class="card-link">編輯</a>
+          <a href="{% url 'post_delete' post.id %}" class="card-link">刪除</a>
+          <a href="{% url 'post_comment' post.id %}" class="card-link">留言</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row mt-4">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+      <h5>留言區</h5>
+      <hr>
+    </div>
+  </div>
+
+  {% for comment in post.comment_set.all %}
+    <div class="row mt-2">
+      <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+        <div class="card">
+          <h6 class="card-header">第 {{ forloop.counter0 }} 樓</h6>
+          <div class="card-body">
+            <p class="card-text">
+              {{ comment.content }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock body %}
