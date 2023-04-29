@@ -58,9 +58,11 @@
         <div class="card">
           <h6 class="card-header">第 {{ forloop.counter0 }} 樓</h6>
           <div class="card-body">
-            <p class="card-text">
-              {{ comment.content }}
-            </p>
+            <p class="card-text">{{ comment.content }}</p>
+          </div>
+          <div class="card-footer text-end">
+            <a href="{% url 'comment_update' comment.id %}" class="card-link">編輯</a>
+            <a href="{% url 'comment_delete' comment.id %}" class="card-link">刪除</a>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
 {% block body %}
-  <p>Hello World</p>
+  <h1>建立留言</h1>
+  {% include '_post_form.html' with submit_text='留言' %}
 {% endblock body %}
