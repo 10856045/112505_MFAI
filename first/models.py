@@ -8,7 +8,12 @@ class Post(models.Model):
     content = models.TextField(max_length=500)
     is_public = models.BooleanField(default=True)
 
-    tags = models.ManyToManyField(to='Tag')
+    tags = models.ManyToManyField(to="Tag", blank=True)
+
+    image = models.ImageField(upload_to="posts/%Y/%m/%d/", null=True, blank=True)
+
+    # null -> 可以存放 null 到資料庫中
+    # blank -> 這個欄位是可以不填寫的
     
     # 自動產生的欄位
     # comment_set => 代表了與 Comment 資料表的關聯（<model>_set）
