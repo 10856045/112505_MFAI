@@ -35,4 +35,5 @@ urlpatterns = [
     path("post-comment/<int:post_id>/", post_comment, name="post_comment"),
     path("comment-update/<int:comment_id>/", comment_update, name="comment_update"),
     path("comment-delete/<int:comment_id>/", comment_delete, name="comment_delete"),
+    #path("login_01/<int:comment_id>/", comment_delete, name="comment_delete"),
 ]
