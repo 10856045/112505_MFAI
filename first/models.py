@@ -9,7 +9,7 @@ class Post(models.Model):
     is_public = models.BooleanField(default=True)
 
     tags = models.ManyToManyField(to='Tag')
-
+    
     # 自動產生的欄位
     # comment_set => 代表了與 Comment 資料表的關聯（<model>_set）
 
