@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 
+from django.contrib.auth.forms import UserCreationForm
+
 from first.models import Post, Comment
 from first.forms import (
     PostForm,
@@ -96,3 +98,30 @@ def comment_delete(request, comment_id):
         return redirect("post_detail", comment.post_id)
 
     return render(request, "comment_delete.html", {"form": form})
+
+def register(request):
+    form = UserCreationForm()
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+    
+    context = {
+        'form': form
+    }
+    return render(request, "register.html", {"form": form})
+
+
+def login(request):
+    form = UserCreationForm()
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+    
+    context = {
+        'form': form
+    }
+    return render(request, "login.html", {"form": form})
