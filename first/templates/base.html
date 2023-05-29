@@ -7,14 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Django Project</title>
+    <title>MatchFinder AI</title>
 
     {% bootstrap_css %}
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">Django Project</span>
+        <span class="navbar-brand mb-0 h1">MatchFinder AI</span>
         <button class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -26,7 +26,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link" href="{% url 'post_list' %}">文章列表</a>
+            <a class="nav-link" href="{% url 'post_list' %}">題目</a>
+            <a class="nav-link" href="{% url 'post_list' %}">群組</a>
+            <a class="nav-link" href="{% url 'post_list' %}">比對</a>
+            <a class="nav-link" href="{% url 'post_list' %}" >我的帳號</a>
+   
           </div>
         </div>
       </div>
