@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_112505',  # 資料庫名稱
-        'USER': 'root',
-        'PASSWORD': '10856045',
-        'HOST': '127.0.0.1',
+        'NAME': '112-112505_MFAI',  # 資料庫名稱
+        'USER': '112505',
+        'PASSWORD': 'MfAI@505112',
+        'HOST': '140.131.114.242',
         'PORT': '3306',
     }
 }
