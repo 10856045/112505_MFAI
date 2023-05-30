@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <h1>新增群組</h1>
+  {% include '_post_form.html'%}
+
+  <h2>新增群組人員</h2>
+{% include '_post_form.html' with submit_text='建立' %}
+{% endblock body %}
