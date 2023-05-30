@@ -125,3 +125,9 @@ def login(request):
         'form': form
     }
     return render(request, "login.html", {"form": form})
+
+
+
+def myword(request):
+
+    return render(request, 'myword.html')
