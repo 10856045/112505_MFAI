@@ -11,7 +11,7 @@ class Post(models.Model):
     tags = models.ManyToManyField(to="Tag", blank=True)
 
     image = models.DateTimeField('加入時間',auto_now_add=True)
-
+    newtime= models.DateTimeField('更新時間',auto_now=True)
     # null -> 可以存放 null 到資料庫中
     # blank -> 這個欄位是可以不填寫的
     
