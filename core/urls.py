@@ -29,7 +29,8 @@ from first.views import (
     comment_update,
     comment_delete,
     register,
-    login
+    login,
+    myword
 )
 
 
@@ -50,6 +51,7 @@ urlpatterns = [
     path("comment-delete/<int:comment_id>/", comment_delete, name="comment_delete"),
     path("register/", register, name="register"),
     path("login/", login, name="login"),
+    path("myword/", myword, name="myword"),
     #path("login_01/<int:comment_id>/", comment_delete, name="comment_delete"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
