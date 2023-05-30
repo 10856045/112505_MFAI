@@ -6,11 +6,11 @@ from django.db import models
 class Post(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField(max_length=500)
-    is_public = models.BooleanField(default=True)
+    is_public = models.IntegerField()
 
     tags = models.ManyToManyField(to="Tag", blank=True)
 
-    image = models.ImageField(upload_to="posts/%Y/%m/%d/", null=True, blank=True)
+    image = models.DateTimeField('加入時間',auto_now_add=True)
 
     # null -> 可以存放 null 到資料庫中
     # blank -> 這個欄位是可以不填寫的

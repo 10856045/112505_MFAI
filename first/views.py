@@ -31,9 +31,6 @@ def post_create(request):
     if form.is_valid():
         form.save()
         messages.success(request, "文章建立成功")
-        messages.info(request, "文章建立成功")
-        messages.warning(request, "文章建立成功")
-        messages.error(request, "文章建立成功")
         return redirect("post_list")
 
     return render(request, "post_create.html", {"form": form})
