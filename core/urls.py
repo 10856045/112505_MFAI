@@ -21,8 +21,11 @@ from django.conf.urls.static import static
 from core.views import my_path, add, minus, multiplied_by, divided_by
 from first.views import (
     post_list,
+    post_grouplist,
+    post_openlist,
     post_detail,
     post_create,
+    post_groupcreate,
     post_update,
     post_delete,
     post_comment,
@@ -42,8 +45,11 @@ urlpatterns = [
     path("multiplied_by/<int:n1>/<int:n2>/", multiplied_by),
     path("divided_by/<int:n1>/<int:n2>/", divided_by),
     path("post-list/", post_list, name="post_list"),
+    path("post-openlist/", post_openlist, name="post_openlist"),
+    path("post-grouplist/", post_grouplist, name="post_grouplist"),
     path("post-detail/<int:post_id>/", post_detail, name="post_detail"),
     path("post-create/", post_create, name="post_create"),
+    path("post-groupcreate/", post_groupcreate, name="post_groupcreate"),
     path("post-update/<int:post_id>/", post_update, name="post_update"),
     path("post-delete/<int:post_id>/", post_delete, name="post_delete"),
     path("post-comment/<int:post_id>/", post_comment, name="post_comment"),

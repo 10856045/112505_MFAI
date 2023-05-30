@@ -19,6 +19,20 @@ def post_list(request):
 
     return render(request, "post_list.html", {"posts": posts})
 
+def post_openlist(request):
+    posts = Post.objects.prefetch_related("tags")
+    if "tag_id" in request.GET:
+        posts = posts.filter(tags__id=request.GET["tag_id"])
+
+    return render(request, "post_openlist.html", {"posts": posts})
+
+def post_grouplist(request):
+    posts = Post.objects.prefetch_related("tags")
+    if "tag_id" in request.GET:
+        posts = posts.filter(tags__id=request.GET["tag_id"])
+
+    return render(request, "post_grouplist.html", {"posts": posts})
+
 
 def post_detail(request, post_id):
     # post = Post.objects.get(id=post_id)
@@ -34,6 +48,15 @@ def post_create(request):
         return redirect("post_list")
 
     return render(request, "post_create.html", {"form": form})
+
+def post_groupcreate(request):
+    form = PostForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        form.save()
+        messages.success(request, "群組建立成功")
+        return redirect("post_list")
+
+    return render(request, "post_groupcreate.html", {"form": form})
 
 
 def post_update(request, post_id):
