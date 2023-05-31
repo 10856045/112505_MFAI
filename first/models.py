@@ -7,11 +7,13 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField(max_length=500)
     is_public = models.IntegerField()
-
     tags = models.ManyToManyField(to="Tag", blank=True)
-
     image = models.DateTimeField('加入時間',auto_now_add=True)
     newtime= models.DateTimeField('更新時間',auto_now=True)
+    input = models.TextField(max_length=45)
+    output = models.TextField(max_length=45)
+    input_ex = models.TextField(max_length=45)
+    output_ex = models.TextField(max_length=45)
     # null -> 可以存放 null 到資料庫中
     # blank -> 這個欄位是可以不填寫的
     

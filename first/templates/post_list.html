@@ -43,6 +43,10 @@
               <td>{{ post.is_public }}</td>
               <td>{{ post.image }}</td>
               <td>{{ post.newtime }}</td>
+              {% comment %} <td>{{ post.input }}</td>
+              <td>{{ post.output }}</td>
+              <td>{{ post.input_ex }}</td>
+              <td>{{ post.output_ex }}</td> {% endcomment %}
               <td>
                 <a class="btn btn-info btn-sm" href="{% url 'post_detail' post.id %}">進入</a>
               </td>
