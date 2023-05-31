@@ -1,0 +1,45 @@
+{% load django_bootstrap5 %}
+
+<form enctype="multipart/form-data" action="" method="POST">
+  {% csrf_token %}
+
+  <form>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">題目名稱</label>
+      <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">內容</label>
+      <input type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    
+    <div class="row">
+      <div class="col">
+        <label for="exampleInputPassword1" class="form-label">輸入說明</label>
+        <input type="text" class="form-control" aria-label="First name">
+      </div>
+      <div class="col">
+        <label for="exampleInputPassword1" class="form-label">輸出說明</label>
+        <input type="text" class="form-control" aria-label="Last name">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label for="exampleInputPassword1" class="form-label">輸入範例</label>
+        <input type="text" class="form-control" aria-label="First name">
+      </div>
+      <div class="col">
+        <label for="exampleInputPassword1" class="form-label">輸出範例</label>
+        <input type="text" class="form-control" aria-label="Last name">
+      </div>
+    </div>
+
+
+  </form>
+
+
+    {% bootstrap_button button_type="submit" content=submit_text button_class="btn-success" %}
+
+</form>
