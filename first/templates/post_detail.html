@@ -34,6 +34,10 @@
 
             {% if post.is_public %}
               {{ post.content | linebreaks }}
+              {{ post.input | linebreaks }}
+              {{ post.output | linebreaks }}
+              {{ post.input_ex | linebreaks }}
+              {{ post.output_ex | linebreaks }}
             {% else %}
               內容不公開
             {% endif %}
