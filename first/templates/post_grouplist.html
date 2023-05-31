@@ -25,6 +25,7 @@
         <thead>
           <tr>
             <th scope="col">編號</th>
+            <th scope="col">名稱</th>
             <th scope="col">人數</th>
           </tr>
         </thead>
@@ -32,6 +33,7 @@
           {% for post in posts %}
             <tr>
               <th scope="row">{{ post.id }}</th>
+              <td>{{ post.title }}</td>
               <td>{{ post.title }}</td>
               <td>{{ post.tags.all|join:', ' }}</td>
               <td>
