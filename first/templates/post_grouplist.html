@@ -6,7 +6,7 @@
     </div>
     <div class="col text-end">
       <a class="btn btn-outline-success" href="{% url 'post_groupcreate' %}">新增群組</a>
-      <a class="btn btn-outline-success" href="{% url 'post_create' %}">上傳題目</a>
+      {% comment %} <a class="btn btn-outline-success" href="{% url 'post_create' %}">上傳題目</a> {% endcomment %}
     </div>
   </div>
 
@@ -37,9 +37,9 @@
               <td>{{ group.G_name }}</td>
               <td>{{ group.count }}</td>
               {% comment %} <td>{{ group.tags.all|join:', ' }}</td> {% endcomment %}
-              {% comment %} <td>
+              <td>
                 <a class="btn btn-info btn-sm" href="{% url 'post_detail' group.id %}">進入</a>
-              </td> {% endcomment %}
+              </td>
             </tr>
           {% empty %}
             <tr>
