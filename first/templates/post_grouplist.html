@@ -35,8 +35,8 @@
             <tr>
               <th scope="row">{{ group.id }}</th>
               <td>{{ group.G_name }}</td>
-              {% comment %} <td>{{ group.count }}</td>
-              <td>{{ group.tags.all|join:', ' }}</td> {% endcomment %}
+              <td>{{ group.count }}</td>
+              {% comment %} <td>{{ group.tags.all|join:', ' }}</td> {% endcomment %}
               {% comment %} <td>
                 <a class="btn btn-info btn-sm" href="{% url 'post_detail' group.id %}">進入</a>
               </td> {% endcomment %}
