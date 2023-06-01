@@ -1,6 +1,6 @@
 from django import forms
 
-from first.models import Post, Comment
+from first.models import Post, Comment, group
 
 
 class PostForm(forms.ModelForm):
@@ -27,3 +27,9 @@ class commentDeleteConfirmForm(forms.Form):
         required=True, 
         label='你確定要刪除這篇文章嗎？真的會消失喔！！！',
     )
+
+class GroupfForm(forms.ModelForm):
+    class Meta:
+        model = group
+        fields = "__all__"
+        # fields = ('title', 'content')

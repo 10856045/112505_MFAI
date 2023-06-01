@@ -31,15 +31,15 @@
           </tr>
         </thead>
         <tbody>
-          {% for post in posts %}
+          {% for group in groups %}
             <tr>
-              <th scope="row">{{ post.id }}</th>
-              <td>{{ post.title }}</td>
-              <td>{{ post.title }}</td>
-              <td>{{ post.tags.all|join:', ' }}</td>
-              <td>
-                <a class="btn btn-info btn-sm" href="{% url 'post_detail' post.id %}">進入</a>
-              </td>
+              <th scope="row">{{ group.id }}</th>
+              <td>{{ group.G_name }}</td>
+              {% comment %} <td>{{ group.count }}</td>
+              <td>{{ group.tags.all|join:', ' }}</td> {% endcomment %}
+              {% comment %} <td>
+                <a class="btn btn-info btn-sm" href="{% url 'post_detail' group.id %}">進入</a>
+              </td> {% endcomment %}
             </tr>
           {% empty %}
             <tr>

@@ -3,12 +3,13 @@ from django.contrib import messages
 
 from django.contrib.auth.forms import UserCreationForm
 
-from first.models import Post, Comment
+from first.models import Post, Comment, group
 from first.forms import (
     PostForm,
     PostDeleteConfirmForm,
     CommentForm,
     commentDeleteConfirmForm,
+    GroupfForm
 )
 
 
@@ -20,11 +21,11 @@ def post_list(request):
     return render(request, "post_list.html", {"posts": posts})
 
 def post_grouplist(request):
-    posts = Post.objects.prefetch_related("tags")
-    if "tag_id" in request.GET:
-        posts = posts.filter(tags__id=request.GET["tag_id"])
-
-    return render(request, "post_grouplist.html", {"posts": posts})
+    groups = group.objects.all()
+    # groups = group.objects.prefetch_related("tags")
+    # if "tag_id" in request.GET:
+    #     posts = posts.filter(tags__id=request.GET["tag_id"])
+    return render(request, "post_grouplist.html", {"groups": groups})
 
 
 def post_detail(request, post_id):
@@ -43,7 +44,7 @@ def post_create(request):
     return render(request, "post_create.html", {"form": form})
 
 def post_groupcreate(request):
-    form = PostForm(request.POST or None, request.FILES or None)
+    form = GroupfForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         form.save()
         messages.success(request, "群組建立成功")
