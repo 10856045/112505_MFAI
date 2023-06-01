@@ -4,16 +4,16 @@ from django.db import models
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=255)
-    content = models.TextField(max_length=500)
-    is_public = models.IntegerField()
-    tags = models.ManyToManyField(to="Tag", blank=True)
+    title = models.CharField(max_length=255, verbose_name="題目名稱")
+    content = models.TextField(max_length=500, verbose_name="內容")
+    is_public = models.IntegerField(verbose_name="是否公開")
+    tags = models.ManyToManyField(to="Tag", blank=True, verbose_name="標籤")
     image = models.DateTimeField('加入時間',auto_now_add=True)
     newtime= models.DateTimeField('更新時間',auto_now=True)
-    input = models.TextField(max_length=45, default='')
-    output = models.TextField(max_length=45, default='')
-    input_ex = models.TextField(max_length=45, default='')
-    output_ex = models.TextField(max_length=45, default='')
+    input = models.TextField(max_length=45, default='', verbose_name="輸入")
+    output = models.TextField(max_length=45, default='', verbose_name="輸出")
+    input_ex = models.TextField(max_length=45, default='', verbose_name="輸入範例")
+    output_ex = models.TextField(max_length=45, default='', verbose_name="輸出範例")
     # null -> 可以存放 null 到資料庫中
     # blank -> 這個欄位是可以不填寫的
     
@@ -48,6 +48,6 @@ class Tag(models.Model):
     
 class group(models.Model):
     count = models.IntegerField()
-    G_name = models.TextField(max_length=45)
+    G_name = models.TextField(max_length=45, verbose_name="群組名稱")
 
     
