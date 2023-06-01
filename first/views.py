@@ -133,21 +133,48 @@ def register(request):
     return render(request, "register.html", {"form": form})
 
 
-def login(request):
-    form = UserCreationForm()
+# def login(request):
+#     form = UserCreationForm()
 
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
+#     if request.method == 'POST':
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
     
-    context = {
-        'form': form
-    }
-    return render(request, "login.html", {"form": form})
+#     context = {
+#         'form': form
+#     }
+#     return render(request, "login.html", {"form": form})
 
-
+def login(request):
+    if request.user.is_authenticated:
+        return render(request, 'home.html')
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = UserCreationForm(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/profile') #profile
+        else:
+            msg = 'Error Login'
+            form = UserCreationForm(request.POST)
+            return render(request, 'login.html', {'form': form, 'msg': msg})
+    else:
+        form = UserCreationForm()
+        return render(request, 'login.html', {'form': form})
+  
+def profile(request): 
+    return render(request, 'profile.html')
+   
+def signout(request):
+    register(request)
+    return redirect('/')
 
 def myword(request):
 
     return render(request, 'myword.html')
+
+def home(request):
+
+    return render(request, 'home.html')

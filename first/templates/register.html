@@ -59,13 +59,13 @@
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background: #7abecc !important;
+			background: #6081B3 !important;
 		}
 		.user_card {
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #74cfbf;
+			background: #BFD1EB;
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -87,7 +87,7 @@
 		}
 		.register_btn {
 			width: 100%;
-			background: #33ccff !important;
+			background: #40649A !important;
 			color: white !important;
 		}
 		.register_btn:focus {
@@ -117,7 +117,7 @@
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
 				<div class="d-flex justify-content-center">
-					<h3 id="form-title">REGISTER ACCOUNT</h3>
+					<h3 id="form-title">註冊帳號</h3>
 				</div>
 				<div class="d-flex justify-content-center form_container">
 
@@ -148,14 +148,14 @@
 						</div>
 
 				   		<div class="d-flex justify-content-center mt-3 register_container">
-				 			<input class="btn register_btn" type="submit" value="Register Account">
+				 			<input class="btn register_btn" type="submit" value="註冊">
 				   		</div>
 					</form>
 				</div>
 		
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Already have an account? <a href="{% url 'login' %}" class="ml-2">login</a>
+						已經有帳號了? <a href="{% url 'login' %}" class="ml-2">登入</a>
 					</div>
 				</div>
 			</div>
@@ -168,10 +168,10 @@
 
 		//Query All input fields
 		var form_fields = document.getElementsByTagName('input')
-		form_fields[0].placeholder='Username..';
-		form_fields[1].placeholder='Email..';
-		form_fields[2].placeholder='Enter password...';
-		form_fields[3].placeholder='Re-enter Password...';
+		form_fields[0].placeholder='使用者名稱..';
+		form_fields[1].placeholder='電子信箱..';
+		form_fields[2].placeholder='密碼...';
+		form_fields[3].placeholder='重複密碼...';
 
 
 		for (var field in form_fields){	
