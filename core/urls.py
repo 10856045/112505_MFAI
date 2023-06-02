@@ -57,8 +57,8 @@ urlpatterns = [
     path("register/", register, name="register"),
     path("login/", login, name="login"),
     path("myword/", myword, name="myword"),
-    path('',home, name="home"),
+    path('home/',home, name="home"),
     #path("login_01/<int:comment_id>/", comment_delete, name="comment_delete"),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
  
