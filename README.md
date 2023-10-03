@@ -36,7 +36,7 @@
 安裝 django-extensions: `poetry add --group dev werkzeug`
 
 進入 Django Runserver Plus: `python manage.py runserver_plus --print-sql`
-
+111
 ## 參考資料
 
 Template Tags: <https://docs.djangoproject.com/en/4.2/ref/templates/builtins/>
