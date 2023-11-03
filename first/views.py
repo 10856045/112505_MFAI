@@ -12,6 +12,9 @@ from first.forms import (
     GroupfForm
 )
 
+from django.shortcuts import render
+from django.http import HttpResponse
+import subprocess
 
 def post_list(request):
     posts = Post.objects.prefetch_related("tags")
@@ -172,3 +175,13 @@ def myword(request):
 def home(request):
 
     return render(request, 'home.html')
+
+def post_compare(request):
+    if request.method == 'POST':
+        try:
+            # 執行
+            subprocess.run(f"dolos run -l python /Users/laibaiduan/Dolos/student_P/*.py > 20231103.text", shell=True, check=True)
+            return HttpResponse("终端命令執行成功")
+        except subprocess.CalledProcessError as e:
+            return HttpResponse(f"终端命執行失败：{e}")
+    return render(request, 'post_compare.html')
