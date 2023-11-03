@@ -18,6 +18,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from first import views
+
 from core.views import my_path, add, minus, multiplied_by, divided_by
 from first.views import (
     post_list,
@@ -60,6 +61,7 @@ urlpatterns = [
     path("login/", login, name="login"),
     path("myword/", myword, name="myword"),
     path('',home, name="home"),
+
     #path("login_01/<int:comment_id>/", comment_delete, name="comment_delete"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
