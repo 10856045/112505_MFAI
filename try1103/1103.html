@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Similarity 值</title>
+</head>
+<body>
+    <h1>Similarity 值</h1>
+    <table>
+        <tr>
+            <th>Similarity</th>
+        </tr>
+        {% for row in data %}
+            <tr>
+                <td>{{ row.similarity }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
