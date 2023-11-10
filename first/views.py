@@ -12,6 +12,9 @@ from first.forms import (
     GroupfForm
 )
 
+from django.shortcuts import render
+from django.http import HttpResponse
+import subprocess
 
 def post_list(request):
     posts = Post.objects.prefetch_related("tags")
@@ -172,3 +175,20 @@ def myword(request):
 def home(request):
 
     return render(request, 'home.html')
+
+
+def post_compare(request):
+    if request.method == 'POST':
+        folder_path = request.POST.get('folder_path', '')
+        output_filename = request.POST.get('output_filename', '')
+        if folder_path and output_filename:
+            try:
+                # 执行终端命令
+                command = f'dolos run -l python {folder_path}/*.py > {output_filename}.text'
+                subprocess.run(command, shell=True, check=True)
+                return HttpResponse("终端命令执行成功")
+            except subprocess.CalledProcessError as e:
+                return HttpResponse(f"终端命令执行失败：{e}")
+        else:
+            return HttpResponse("文件夹路径和输出文件名不能为空")
+    return render(request, 'post_compare.html')

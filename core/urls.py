@@ -18,6 +18,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from first import views
+
 from core.views import my_path, add, minus, multiplied_by, divided_by
 from first.views import (
     post_list,
@@ -28,6 +29,7 @@ from first.views import (
     post_update,
     post_delete,
     post_comment,
+    post_compare,
     comment_update,
     comment_delete,
     register,
@@ -52,12 +54,14 @@ urlpatterns = [
     path("post-update/<int:post_id>/", post_update, name="post_update"),
     path("post-delete/<int:post_id>/", post_delete, name="post_delete"),
     path("post-comment/<int:post_id>/", post_comment, name="post_comment"),
+    path("post-compare/", post_compare, name="post_compare"),
     path("comment-update/<int:comment_id>/", comment_update, name="comment_update"),
     path("comment-delete/<int:comment_id>/", comment_delete, name="comment_delete"),
     path("register/", register, name="register"),
     path("login/", login, name="login"),
     path("myword/", myword, name="myword"),
     path('',home, name="home"),
+
     #path("login_01/<int:comment_id>/", comment_delete, name="comment_delete"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
