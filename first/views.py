@@ -205,7 +205,7 @@ def post_compare(request):
                             file_paths.append(file_path)
                 
                 # Similarity轉換成百分比
-                similarity_percentages = [value * 100 for value in similarity_values]
+                similarity_percentages = [round(value * 100, 1) for value in similarity_values]
 
                 # 刪除讀取完成的檔案
                 os.remove(f'{output_filename}.text')

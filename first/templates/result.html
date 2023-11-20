@@ -1,38 +1,51 @@
 {% extends 'base.html' %}
 
-{% block body %}
-<div class="container mt-5">
-    <div class="row">
-        <div class="col">
-            <h1 class="display-4">比對結果</h1>
-        </div>
-        <div class="col text-end">
-            <a class="btn btn-outline-success btn-lg" href="{% url 'post_compare' %}">結束</a>
-        </div>
-    </div>
+{% block head %}
+    {{ block.super }}
+    <!-- Add Bootstrap and jQuery scripts here -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js" integrity="sha384-LaaTQ3NUq1d3+ZzeLqVCS8NTEBJj3lcoa+TzmDHVa/7vBYT/1Qp36I3nZgW2Zt3P"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WykHW8AHquD1lPA2CyDAdfjR8MpqM4Pp9U" crossorigin="anonymous"></script>
+{% endblock head %}
 
-    <table class="table mt-4">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col" class="fs-4">檔案名稱</th>
-                <th scope="col" class="fs-4">相似度</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for percentage in percentages %}
+{% block body %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <h1 class="display-4">比對結果</h1>
+            </div>
+            <div class="col text-end">
+                <a class="btn btn-outline-success btn-lg" href="{% url 'post_compare' %}">結束</a>
+            </div>
+        </div>
+
+        <!-- Additional content -->
+        <div class="mt-4">
+            <p class="lead">以下是相似度的比較結果</p>
+        </div>
+
+        <table class="table mt-4">
+            <thead>
                 <tr>
-                    <td>File{{ forloop.counter }}.txt</td>
-                    <td>
-                        <div class="progress" style="height: 20px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ percentage }}%;" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100">
-                                <span class="visually-hidden">{{ percentage }}% Complete</span>
-                                {{ percentage }}%
-                            </div>
-                        </div>
-                    </td>
+                    <th scope="col" class="fs-4">檔案名稱</th>
+                    <th scope="col" class="fs-4">相似度</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                {% for percentage in percentages %}
+                    <tr>
+                        <td>File{{ forloop.counter }}.txt</td>
+                        <td>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar" role="progressbar" style="width: {{ percentage }}%;" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100">
+                                    {{ percentage }}%
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock body %}
