@@ -13,15 +13,6 @@
     </div>
   </div>
 
-  {% comment %} <ul>
-    {% for post in posts %}
-      <li>
-        #{{ post.id }} | {{ post.title }} | <a href="{% url 'post_detail' post.id %}">detail</a>
-      </li>
-    {% empty %}
-      <li>沒有任何文章</li>
-    {% endfor %}
-  </ul> {% endcomment %}
 
   <div class="row">
     <div class="col">
@@ -43,10 +34,6 @@
               <td>{{ post.is_public }}</td>
               <td>{{ post.image }}</td>
               <td>{{ post.newtime }}</td>
-              {% comment %} <td>{{ post.input }}</td>
-              <td>{{ post.output }}</td>
-              <td>{{ post.input_ex }}</td>
-              <td>{{ post.output_ex }}</td> {% endcomment %}
               <td>
                 <a class="btn btn-info btn-sm" href="{% url 'post_detail' post.id %}">進入</a>
               </td>
