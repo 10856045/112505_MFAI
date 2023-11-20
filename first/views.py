@@ -180,7 +180,6 @@ def home(request):
     return render(request, 'home.html')
 
 
-
 def post_compare(request):
     if request.method == 'POST':
         folder_path = request.POST.get('folder_path', '')
@@ -193,14 +192,17 @@ def post_compare(request):
                 
                 # 讀取文件
                 similarity_values = []
+                file_paths = []
+
                 with open(f'{output_filename}.text', 'r') as file:
-                    # 跳過標題
-                    next(file)  
+                    next(file) 
                     for line in file:
                         fields = line.split()
                         if len(fields) == 5:  
                             similarity = float(fields[2])
+                            file_path = fields[1]
                             similarity_values.append(similarity)
+                            file_paths.append(file_path)
                 
                 # Similarity轉換成百分比
                 similarity_percentages = [value * 100 for value in similarity_values]
@@ -208,7 +210,8 @@ def post_compare(request):
                 # 刪除讀取完成的檔案
                 os.remove(f'{output_filename}.text')
 
-                return render(request, 'result.html', {'percentages': similarity_percentages})
+                return render(request, 'result.html', {'percentages': similarity_percentages, 'file_paths': file_paths})
             except subprocess.CalledProcessError as e:
                 messages.error(request, "比對失敗")
     return render(request, 'post_compare.html')
+

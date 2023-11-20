@@ -7,11 +7,18 @@
 </head>
 <body>
     <h1>比對結果</h1>
-    <ul>
+    <table>
+        <tr>
+            <th>檔案名稱</th>
+            <th>相似度</th>
+        </tr>
         {% for percentage in percentages %}
-            <li>{{ percentage }}%</li>
+            <tr>
+                <td>{{ file_paths }}</td>
+                <td>{{ percentage }}%</td>
+            </tr>
         {% endfor %}
-    </ul>
+    </table>
 </body>
 </html>
 {% endblock body %}
