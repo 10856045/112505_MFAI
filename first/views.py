@@ -13,8 +13,7 @@ from first.forms import (
 )
 
 from django.shortcuts import render
-from django.http import HttpResponse
-import subprocess
+import subprocess, os
 
 def post_list(request):
     posts = Post.objects.prefetch_related("tags")
@@ -181,15 +180,17 @@ def home(request):
     return render(request, 'home.html')
 
 
+
 def post_compare(request):
     if request.method == 'POST':
         folder_path = request.POST.get('folder_path', '')
         output_filename = request.POST.get('output_filename', '')
         if folder_path and output_filename:
             try:
-                command = f'dolos run -l python {folder_path}/*.py > {output_filename}.text'
+                command = f'dolos run -l python /{folder_path}/*.py > {output_filename}.text'
                 subprocess.run(command, shell=True, check=True)
                 messages.success(request, "比對成功")
+                
                 # 讀取文件
                 similarity_values = []
                 with open(f'{output_filename}.text', 'r') as file:
@@ -203,6 +204,10 @@ def post_compare(request):
                 
                 # Similarity轉換成百分比
                 similarity_percentages = [value * 100 for value in similarity_values]
+
+                # Delete the text file
+                os.remove(f'{output_filename}.text')
+
                 return render(request, 'result.html', {'percentages': similarity_percentages})
             except subprocess.CalledProcessError as e:
                 messages.error(request, "比對失敗")
