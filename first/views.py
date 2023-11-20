@@ -187,25 +187,23 @@ def post_compare(request):
         output_filename = request.POST.get('output_filename', '')
         if folder_path and output_filename:
             try:
-                # 执行终端命令
                 command = f'dolos run -l python {folder_path}/*.py > {output_filename}.text'
                 subprocess.run(command, shell=True, check=True)
-                # 读取生成的文件，提取 Similarity 值
+                messages.success(request, "比對成功")
+                # 讀取文件
                 similarity_values = []
                 with open(f'{output_filename}.text', 'r') as file:
-                    next(file)  # 跳过标题行
+                    # 跳過標題
+                    next(file)  
                     for line in file:
                         fields = line.split()
-                        if len(fields) == 5:  # 假设每行都包含5个字段
+                        if len(fields) == 5:  
                             similarity = float(fields[2])
                             similarity_values.append(similarity)
                 
-                # 将 Similarity 值转换为百分比
+                # Similarity轉換成百分比
                 similarity_percentages = [value * 100 for value in similarity_values]
-
                 return render(request, 'result.html', {'percentages': similarity_percentages})
             except subprocess.CalledProcessError as e:
-                return HttpResponse(f"终端命令执行失败：{e}")
-        else:
-            return HttpResponse("文件夹路径和输出文件名不能为空")
+                messages.error(request, "比對失敗")
     return render(request, 'post_compare.html')
