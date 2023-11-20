@@ -1,24 +1,31 @@
-<!-- 在你的 result.html 文件中 -->
 {% extends 'base.html' %}
+
 {% block body %}
-<html>
-<head>
-    <title>比對結果</title>
-</head>
-<body>
-    <h1>比對結果</h1>
-    <table>
-        <tr>
-            <th>檔案名稱</th>
-            <th>相似度</th>
-        </tr>
-        {% for percentage in percentages %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1 class="display-4">比對結果</h1>
+        </div>
+        <div class="col text-end">
+            <a class="btn btn-outline-success" href="{% url 'post_compare' %}">結束</a>
+        </div>
+    </div>
+
+    <table class="table mt-4">
+        <thead>
             <tr>
-                <td>{{ file_paths }}</td>
-                <td>{{ percentage }}%</td>
+                <th scope="col">檔案名稱</th>
+                <th scope="col">相似度</th>
             </tr>
-        {% endfor %}
+        </thead>
+        <tbody>
+            {% for percentage in percentages %}
+                <tr>
+                    <td>{{ }}.py</td>
+                    <td>{{ percentage }}%</td>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
-</body>
-</html>
+</div>
 {% endblock body %}
