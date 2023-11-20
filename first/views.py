@@ -205,7 +205,7 @@ def post_compare(request):
                 # Similarity轉換成百分比
                 similarity_percentages = [value * 100 for value in similarity_values]
 
-                # Delete the text file
+                # 刪除讀取完成的檔案
                 os.remove(f'{output_filename}.text')
 
                 return render(request, 'result.html', {'percentages': similarity_percentages})
