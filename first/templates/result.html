@@ -1,0 +1,17 @@
+<!-- 在你的 result.html 文件中 -->
+{% extends 'base.html' %}
+{% block body %}
+<html>
+<head>
+    <title>Similarity Result</title>
+</head>
+<body>
+    <h1>Similarity Percentages</h1>
+    <ul>
+        {% for percentage in percentages %}
+            <li>{{ percentage }}%</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+{% endblock body %}
