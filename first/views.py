@@ -172,6 +172,10 @@ def myword(request):
 
     return render(request, 'myword.html')
 
+def result(request):
+
+    return render(request, 'result.html')
+
 def home(request):
 
     return render(request, 'home.html')

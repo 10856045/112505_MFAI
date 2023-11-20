@@ -36,6 +36,7 @@ from first.views import (
     login,
     myword, 
     home,
+    result,
 )
 
 
@@ -60,6 +61,7 @@ urlpatterns = [
     path("register/", register, name="register"),
     path("login/", login, name="login"),
     path("myword/", myword, name="myword"),
+    path("result/", result, name="result"),
     path('',home, name="home"),
 
     #path("login_01/<int:comment_id>/", comment_delete, name="comment_delete"),
