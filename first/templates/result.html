@@ -12,22 +12,21 @@
     </div>
 
     <table class="table mt-4">
-        <thead>
+        <thead class="thead-dark">
             <tr>
-                <th scope="col">檔案名稱</th>
-                <th scope="col">相似度</th>
-                <th scope="col">線圖</th>
+                <th scope="col" class="fs-4">檔案名稱</th>
+                <th scope="col" class="fs-4">相似度</th>
             </tr>
         </thead>
         <tbody>
             {% for percentage in percentages %}
                 <tr>
                     <td>File{{ forloop.counter }}.txt</td>
-                    <td>{{ percentage }}%</td>
                     <td>
                         <div class="progress" style="height: 20px;">
-                            <div class="progress-bar" role="progressbar" style="width: {{ percentage }}%;" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ percentage }}%;" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100">
                                 <span class="visually-hidden">{{ percentage }}% Complete</span>
+                                {{ percentage }}%
                             </div>
                         </div>
                     </td>
