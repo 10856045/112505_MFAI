@@ -16,13 +16,21 @@
             <tr>
                 <th scope="col">檔案名稱</th>
                 <th scope="col">相似度</th>
+                <th scope="col">線圖</th>
             </tr>
         </thead>
         <tbody>
             {% for percentage in percentages %}
                 <tr>
-                    <td>{{ }}.py</td>
+                    <td>File{{ forloop.counter }}.txt</td>
                     <td>{{ percentage }}%</td>
+                    <td>
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar" role="progressbar" style="width: {{ percentage }}%;" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100">
+                                <span class="visually-hidden">{{ percentage }}% Complete</span>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
