@@ -1,7 +1,0 @@
-id,leftFileId,leftFilePath,rightFileId,rightFilePath,similarity,totalOverlap,longestFragment,leftCovered,rightCovered
-159,2,orm-example.py,3,orm-search.py,0.2801556420233463,72,4,56,16
-156,1,manage.py,2,orm-example.py,0.078125,20,2,4,16
-157,1,manage.py,3,orm-search.py,0.04918032786885246,3,1,1,2
-158,1,manage.py,0,try_push.py,0,0,0,0,0
-160,2,orm-example.py,0,try_push.py,0,0,0,0,0
-161,3,orm-search.py,0,try_push.py,0,0,0,0,0
