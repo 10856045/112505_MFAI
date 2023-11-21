@@ -64,13 +64,12 @@
     <div class="row mt-2">
       <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
         <div class="card">
-          <h6 class="card-header">第 {{ forloop.counter0 }} 樓</h6>
+          <h6 class="card-header">第 {{ forloop.counter }} 樓</h6>
           <div class="card-body">
             <p class="card-text">{{ comment.content }}</p>
           </div>
           <div class="card-footer text-end">
-            <a href="{% url 'comment_update' comment.id %}" class="card-link">編輯</a>
-            <a href="{% url 'comment_delete' comment.id %}" class="card-link">刪除</a>
+            
           </div>
         </div>
       </div>
