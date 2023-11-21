@@ -210,7 +210,7 @@ def post_compare(request):
                 # 刪除讀取完成的檔案
                 os.remove(f'{output_filename}.text')
 
-                return render(request, 'result.html', {'percentages': similarity_percentages, 'file_paths': file_paths})
+                return render(request, 'post_result.html', {'percentages': similarity_percentages, 'file_paths': file_paths})
             except subprocess.CalledProcessError as e:
                 messages.error(request, "比對失敗")
     return render(request, 'post_compare.html')
