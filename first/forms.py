@@ -2,6 +2,8 @@ from django import forms
 
 from first.models import Post, Comment, group
 
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -33,3 +35,11 @@ class GroupfForm(forms.ModelForm):
         model = group
         fields = "__all__"
         # fields = ('title', 'content')
+
+class UserRegistrationForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+        widgets = {
+            'password': forms.PasswordInput(),
+        }

@@ -50,4 +50,11 @@ class group(models.Model):
     count = models.IntegerField()
     G_name = models.TextField(max_length=45, verbose_name="群組名稱")
 
-    
+class User(models.Model):
+    ID = models.AutoField(primary_key=True)
+    username = models.CharField(max_length=45)
+    email = models.EmailField(max_length=45)
+    password = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.username

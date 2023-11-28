@@ -14,6 +14,12 @@ from first.forms import (
 
 from django.shortcuts import render
 import subprocess, os
+from django.template.context_processors import csrf
+
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
+
 
 def post_list(request):
     posts = Post.objects.prefetch_related("tags")
@@ -116,19 +122,18 @@ def comment_delete(request, comment_id):
     return render(request, "comment_delete.html", {"form": form})
 
 def register(request):
-    form = UserCreationForm()
+    form = UserCreationForm()  # Define the form outside the conditional block
 
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
+        print(form.errors)
         if form.is_valid():
-            form.save()
-    
-    context = {
-        'form': form
-    }
-    return render(request, "register.html", {"form": form})
-
-
+            print("iiiiii")
+            user = form.save()
+            print(user)
+            return redirect('login')  # Redirect to the login page or another page on successful registration
+        
+    return render(request, 'register.html', {'form': form})
 # def login(request):
 #     form = UserCreationForm()
 
@@ -143,23 +148,30 @@ def register(request):
 #     return render(request, "login.html", {"form": form})
 
 def login(request):
+    print('iiiiii')
     if request.user.is_authenticated:
-        return render(request, 'home.html')
+        return redirect('/post-list')
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = UserCreationForm(request, username=username, password=password)
+        username = request.POST.get("username")
+        pass1 = request.POST.get("password")
+        #user = UserCreationForm(request)
+        user = authenticate(request, username=username, password=pass1)
+
         if user is not None:
-            login(request, user)
-            return redirect('/profile') #profile
+            auth_login(request, user)
+            return redirect('/post-list') #profile
         else:
             msg = 'Error Login'
-            form = UserCreationForm(request.POST)
-            return render(request, 'login.html', {'form': form, 'msg': msg})
+            return messages.erro("Username or Password is incorrect!!!!!")   
     else:
-        form = UserCreationForm()
-        return render(request, 'login.html', {'form': form})
-  
+        #form = UserCreationForm()
+        return render(request, 'login.html')
+def logout(request):
+    auth_logout(request)
+     # 重定向到首页或其他页面
+    if not request.user.is_authenticated:
+        return redirect('login') 
+    
 def profile(request): 
     return render(request, 'profile.html')
    
