@@ -15,7 +15,7 @@ class PostForm(forms.ModelForm):
 class PostDeleteConfirmForm(forms.Form):
     check = forms.BooleanField(
         required=True, 
-        label='你確定要刪除這篇文章嗎？',
+        label='你確定要刪除這篇題目嗎？',
     )
 
 class CommentForm(forms.ModelForm):
