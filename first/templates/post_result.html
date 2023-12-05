@@ -36,7 +36,7 @@
             <tbody>
                 {% for percentage in percentages %}
                     <tr>
-                        <td>student_{{ forloop.counter }}.py</td>
+                        <td>{{output_filename}}_{{ forloop.counter }}.py</td>
                         <td>
                             <div class="progress" style="height: 20px;">
                                 <div class="progress-bar" role="progressbar" style="width: {{ percentage }}%;" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100">
