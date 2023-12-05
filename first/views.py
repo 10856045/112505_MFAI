@@ -161,11 +161,12 @@ def login(request):
             auth_login(request, user)
             return redirect('/post-list') #profile
         else:
-            msg = 'Error Login'
-            return messages.erro("Username or Password is incorrect!!!!!")   
+            messages.error(request, "用戶名或密碼不正確！")
+            return redirect('login')
+               
     else:
-        #form = UserCreationForm()
-        return render(request, 'login.html')
+        form = UserCreationForm()
+        return render(request, 'login.html', {'form': form})
 def logout(request):
     auth_logout(request)
      # 重定向到首页或其他页面
