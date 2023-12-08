@@ -134,18 +134,6 @@ def register(request):
             return redirect('login')  # Redirect to the login page or another page on successful registration
         
     return render(request, 'register.html', {'form': form})
-# def login(request):
-#     form = UserCreationForm()
-
-#     if request.method == 'POST':
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-    
-#     context = {
-#         'form': form
-#     }
-#     return render(request, "login.html", {"form": form})
 
 def login(request):
     print('iiiiii')
