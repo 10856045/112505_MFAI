@@ -217,3 +217,9 @@ def post_compare(request):
                 messages.error(request, "比對失敗")
     return render(request, 'post_compare.html')
 
+
+def search_view(request):
+    search_term = request.GET.get('search_term', '')
+    posts = Post.objects.filter(title__icontains=search_term)
+    return render(request, 'post_list.html', {'posts': posts, 'search_term': search_term})
+

@@ -38,6 +38,7 @@ from first.views import (
     myword, 
     home,
     result,
+    search_view
 )
 
 
@@ -65,6 +66,7 @@ urlpatterns = [
     path("myword/", myword, name="myword"),
     path("result/", result, name="result"),
     path('',home, name="home"),
+    path('search/', search_view, name='search'),
 
     #path("login_01/<int:comment_id>/", comment_delete, name="comment_delete"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
