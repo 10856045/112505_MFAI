@@ -1,54 +1,58 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block body %}
-  <div class="row">
-    <div class="col">
-      <h1>題目列表</h1>
-      <form class="d-flex" action="{% url 'search' %}" method="get">
-        <input class="form-control me-2" type="search" name="search_term" placeholder="搜尋題目" aria-label="Search">
-        <button class="btn btn-primary" type="submit">搜尋</button>
-    </form>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col">
+        <h1 class="font-weight-bold">題目列表</h1>
+        <form class="d-flex mb-4" action="{% url 'search' %}" method="get">
+          <input class="form-control me-sm-2" type="search" name="search_term" placeholder="搜尋題目" aria-label="Search">
+          <button class="btn btn-primary" type="submit">搜尋</button>
+        </form>
+      </div>
+      <div class="col text-end">
+        <a class="btn btn-outline-success" href="{% url 'post_create' %}">上傳題目</a>
+        {% if search_term %}
+          <a class="btn btn-outline-success" href="{% url 'post_list' %}">顯示全部</a>
+        {% endif %}
+      </div>
     </div>
 
-    <div class="col text-end">
-      <a class="btn btn-outline-success" href="{% url 'post_create' %}">上傳題目</a>
-      {% if search_term %}
-        <a class="btn btn-secondary" href="{% url 'post_list' %}">顯示全部題目</a>
-      {% endif %}
+    <div class="row">
+      <div class="col">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">編號</th>
+              <th scope="col">題目</th>
+              <th scope="col">比對次數</th>
+              <th scope="col">加入時間</th>
+              <th scope="col">最後更新時間</th>
+              <th scope="col">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for post in posts %}
+              <tr class="table-primary">
+                <th scope="row">{{ post.id }}</th>
+                <td>{{ post.title }}</td>
+                <td>{{ post.is_public }}</td>
+                <td>{{ post.image }}</td>
+                <td>{{ post.newtime }}</td>
+                <td>
+                  <a class="btn btn-warning" href="{% url 'post_detail' post.id %}">進入</a>
+                </td>
+              </tr>
+            {% empty %}
+              <tr>
+                <th scope="row" colspan="6" class="text-center">目前沒有任何題目，不如你發一篇吧！</th>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col">
-      <table class="table">
-
-          <tr>
-            <th scope="col">編號</th>
-            <th scope="col">題目</th>
-            <th scope="col">比對次數</th>
-            <th scope="col">加入時間</th>
-            <th scope="col">最後更新時間</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for post in posts %}
-            <tr>
-              <th scope="row">{{ post.id }}</th>
-              <td>{{ post.title }}</td>
-              <td>{{ post.is_public }}</td>
-              <td>{{ post.image }}</td>
-              <td>{{ post.newtime }}</td>
-              <td>
-                <a class="btn btn-info btn-sm" href="{% url 'post_detail' post.id %}">進入</a>
-              </td>
-            </tr>
-          {% empty %}
-            <tr>
-              <th scope="row" colspan="4" class="text-center">目前沒有任何題目，不如你發一篇吧！</th>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 {% endblock body %}
 
