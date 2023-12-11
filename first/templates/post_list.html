@@ -33,7 +33,7 @@
           </thead>
           <tbody>
             {% for post in posts %}
-              <tr class="table-primary">
+              <tr class="{% cycle 'table-primary' 'table-secondary' %}">
                 <th scope="row">{{ post.id }}</th>
                 <td>{{ post.title }}</td>
                 <td>{{ post.is_public }}</td>
