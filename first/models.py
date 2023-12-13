@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -28,7 +28,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     content = models.TextField(max_length=500)
-
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     # FK 刪除的策略
     # models.CASCADE：連帶刪除 -> 刪除 Post 時一併刪除 Comment
     # models.PROTECT：保護 -> 刪除 Post 時，若有 Comemnt 存在阻止 Post 刪除
@@ -57,7 +57,6 @@ class User(models.Model):
     email = models.EmailField(max_length=45)
     password = models.CharField(max_length=20)
     is_staff = models.IntegerField(max_length=1)
-    
 
     def __str__(self):
         return self.username
