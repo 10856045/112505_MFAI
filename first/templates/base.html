@@ -32,7 +32,16 @@
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">我的帳號</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="{% url 'myword' %}">帳號管理</a></li>
+                <li> 
+                  {% if user.is_authenticated %}
+                  {% if user.is_staff %}
+                      <!-- Display the button only if the user is staff -->
+                      <a class="dropdown-item" href="{% url 'myword' %}">Super帳號管理</a>
+                  {% endif %}
+                  {% endif %}
+                </li> 
                 <li><a class="dropdown-item" href="{% url 'logout' %}">登出</a></li>
+                  
               </ul>
             </li>
               
