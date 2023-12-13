@@ -221,6 +221,17 @@
             color: #004085; /* Set heading color to a darker blue */
         }
     </style>
+    <script>
+        function changeTab(tabId) {
+            // 根據選擇的標籤ID更換圖片
+            var imgElement = document.getElementById('teamImage');
+            if (tabId === 'about') {
+                imgElement.src = "{% static 'images\01.png' %}";
+            } else if (tabId === 'team') {
+                imgElement.src = "{% static 'images\02.png' %}";
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container-fluid">
@@ -257,6 +268,18 @@
                         <a class="nav-link" data-toggle="tab" href="#team" aria-selected="false" role="tab">團隊介紹</a>
                     </li>
                 </ul>
+                
+                {% comment %} <script>
+                    function changeTab(tabId) {
+                        // 根據選擇的標籤ID更換圖片
+                        var imgElement = document.getElementById('tabImage');
+                        if (tabId === 'about') {
+                            imgElement.src = "{% static 'images\01.png' %}";
+                        } else if (tabId === 'team') {
+                            imgElement.src = "{% static 'images\MFAI.png' %}";
+                        }
+                    }
+                </script> {% endcomment %}
         
                 <!-- Tab Content -->
                 <div id="myTabContent" class="tab-content">
