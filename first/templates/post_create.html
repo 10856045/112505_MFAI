@@ -1,7 +1,18 @@
 {% extends 'base.html' %}
 
 {% block body %}
-  <h1>上傳題目</h1>
+  <div class="container mt-5">
+    <h1 class="mb-4">上傳題目</h1>
+
+    <div class="card">
+      <div class="card-body">
+        {% include '_post_form_topic.html' with submit_text='建立' %}
+      </div>
+    </div>
+  </div>
+{% endblock body %}
+
+
   {% comment %} <form>
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">題目名稱</label>
@@ -37,5 +48,3 @@
 
 
   </form> {% endcomment %}
-  {% include '_post_form_topic.html' with submit_text='建立' %}
-{% endblock body %}

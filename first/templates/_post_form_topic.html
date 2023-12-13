@@ -3,6 +3,13 @@
 <form enctype="multipart/form-data" action="" method="POST">
   {% csrf_token %}
 
+
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content=submit_text button_class="btn-success" %}
+  
+</form>
+
+
   {% comment %} <form>
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">題目名稱</label>
@@ -38,8 +45,3 @@
 
 
   </form> {% endcomment %}
-
-    {% bootstrap_form form %}
-    {% bootstrap_button button_type="submit" content=submit_text button_class="btn-success" %}
-  
-</form>
