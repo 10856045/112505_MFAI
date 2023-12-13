@@ -91,6 +91,10 @@ def post_comment(request, post_id):
     if form.is_valid():
         comment = form.save(commit=False)
         comment.post = post
+
+        if request.user.is_authenticated:
+            comment.user = request.user
+            
         comment.save()
 
         messages.success(request, "留言成功")

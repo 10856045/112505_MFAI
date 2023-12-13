@@ -38,8 +38,9 @@ from first.views import (
     myword, 
     home,
     result,
-    search_view
+    search_view,
 )
+from django.contrib.auth.views import LoginView, LogoutView
 
 
 urlpatterns = [
@@ -67,6 +68,8 @@ urlpatterns = [
     path("result/", result, name="result"),
     path('',home, name="home"),
     path('search/', search_view, name='search'),
+    path('login/', LoginView.as_view(template_name='your_login_template.html'), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 
     #path("login_01/<int:comment_id>/", comment_delete, name="comment_delete"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

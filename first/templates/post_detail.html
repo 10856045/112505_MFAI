@@ -61,18 +61,21 @@
   </div>
 
   {% for comment in post.comment_set.all %}
-    <div class="row mt-2">
+  <div class="row mt-2">
       <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-        <div class="card">
-          <h6 class="card-header">第 {{ forloop.counter }} 樓</h6>
-          <div class="card-body">
-            <p class="card-text">{{ comment.content }}</p>
+          <div class="card">
+              <div class="card-header">
+                  <h6 class="d-inline">第 {{ forloop.counter }} 樓</h6> 
+              </div>
+              <div class="card-body">
+                  <p class="card-text">{{ comment.user.username }} {{ comment.content }}</p>
+              </div>
+              <div class="card-footer text-end">
+                  <a href="{% url 'comment_delete' comment.id %}" class="btn btn-outline-danger btn-sm">刪除留言</a>
+              </div>
           </div>
-          <div class="card-footer text-end">
-            <a href="{% url 'comment_delete' comment.id %}" class="btn btn-primary btn-sm">刪除</a> 
-          </div>
-        </div>
       </div>
-    </div>
-  {% endfor %}
+  </div>
+{% endfor %}
+
 {% endblock body %}
