@@ -25,7 +25,7 @@ def post_list(request):
     posts = Post.objects.prefetch_related("tags")
     if "tag_id" in request.GET:
         posts = posts.filter(tags__id=request.GET["tag_id"])
-
+    
     return render(request, "post_list.html", {"posts": posts})
 
 def post_grouplist(request):
@@ -149,6 +149,7 @@ def login(request):
 
         if user is not None:
             auth_login(request, user)
+            request.current_user = user
             return redirect('/post-list') #profile
         else:
             messages.error(request, "用戶名或密碼不正確！")
