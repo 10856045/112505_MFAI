@@ -10,7 +10,6 @@
   <br>
   <a href="{% url 'post_update' post.id %}">編輯</a>
   <a href="{% url 'post_delete' post.id %}">刪除</a> {% endcomment %}
-
   <div class="row">
     <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
       {% if post.image %}
@@ -31,7 +30,6 @@
                 {% endfor %}
               </ol>
             </nav>
-
             {% if post.is_public %}
               {{ post.content | linebreaks }}
               {{ post.input | linebreaks }}
@@ -44,22 +42,25 @@
           </p>
         </div>
         <div class="card-footer text-end">
-          <a href="{% url 'post_update' post.id %}" class="btn btn-secondary">編輯</a>
-          <a href="{% url 'post_delete' post.id %}" class="btn btn-secondary">刪除</a>
-          <a href="{% url 'post_comment' post.id %}" class="btn btn-secondary">留言</a>
+
+          {% if user.is_authenticated %}
+          {% if user.is_staff %}
+            <a href="{% url 'post_update' post.id %}" class="btn btn-secondary">編輯</a>
+            <a href="{% url 'post_delete' post.id %}" class="btn btn-secondary">刪除</a>
+          {% endif %}
+          {% endif %}
+            <a href="{% url 'post_comment' post.id %}" class="btn btn-secondary">留言</a>
+
         </div>
       </div>
     </div>
   </div>
-
-
   <div class="row mt-4">
     <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
       <h5>留言區</h5>
       <hr>
     </div>
   </div>
-
   {% for comment in post.comment_set.all %}
   <div class="row mt-2">
       <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
@@ -72,19 +73,16 @@
               </div>
               
 
-              
-              {% if user.is_authenticated %}
-              {% if user.is_staff %}
-                <div class="card-footer text-end">  <!-- Display the button only if the user is staff -->
-                  <a href="{% url 'comment_delete' comment.id %}" class="btn btn-outline-danger btn-sm">刪除留言</a> 
-                </div> 
-                  {% endif %}
-              {% endif %}
-              
+                {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                  <div class="card-footer text-end">  <!-- Display the button only if the user is staff -->
+                    <a href="{% url 'comment_delete' comment.id %}" class="btn btn-outline-danger btn-sm">刪除留言</a> 
+                  </div>
+                    {% endif %}
+                {% endif %}
 
           </div>
       </div>
   </div>
 {% endfor %}
-
 {% endblock body %}
