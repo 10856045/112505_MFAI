@@ -77,7 +77,7 @@
               {% if user.is_staff %}
                 <div class="card-footer text-end">  <!-- Display the button only if the user is staff -->
                   <a href="{% url 'comment_delete' comment.id %}" class="btn btn-outline-danger btn-sm">刪除留言</a> 
-                </div>
+                </div> 
                   {% endif %}
               {% endif %}
               
