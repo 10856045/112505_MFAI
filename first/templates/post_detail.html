@@ -68,7 +68,7 @@
                   <h6 class="d-inline">第 {{ forloop.counter }} 樓</h6> 
               </div>
               <div class="card-body">
-                  <p class="card-text">{{ comment.user.username }} {{ comment.content }}</p>
+                  <p class="card-text"><strong>{{ comment.user.username }}</strong>: {{ comment.content }}</p>
               </div>
               <div class="card-footer text-end">
                   <a href="{% url 'comment_delete' comment.id %}" class="btn btn-outline-danger btn-sm">刪除留言</a>
